@@ -1,0 +1,10 @@
+archr==9.2.160
+setuptools==80.9.0
+networkx==3.5
+pydot==4.0.0
+tqdm==4.67.1
+
+types-networkx==3.5.0.20250610
+types-tqdm==4.67.0.20250516
+mypy
+pylint
