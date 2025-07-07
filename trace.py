@@ -62,7 +62,7 @@ def main(image_id: str, labelled_test_inputs: list[tuple[str, bytes]]) -> None:
     g: DiGraph = DiGraph()
     for i, (edge_set, prefix, label) in enumerate(zip(edge_sets, test_inputs, labels)):
         if len(prefix) > 0:
-            for edge in functools.reduce(set.__and__, edge_sets[i:]) - edges_seen:
+            for edge in (edge_sets[i] & edge_sets[-1]) - edges_seen:
                 # - This is the first time we've seen this edge
                 # - This edge appears in all subsequent edge sets
                 g.add_edge(*edge, color=color_from_label(label), xlabel=label)
@@ -93,7 +93,7 @@ def main(image_id: str, labelled_test_inputs: list[tuple[str, bytes]]) -> None:
 RULE_NAMES: list[str] = ["scheme", "user", "password", "host", "port", "path", "query", "frag"]
 intermediate_result: str = ""
 
-def walk(pt: dict, result: list[bytes] | None = None, rules: list[str] | None = None, depth: int = 0):
+def walk(pt: dict, result: list[bytes] | None = None, rules: list[str] | None = None, depth: int = 0) -> list[tuple[str, bytes]] | None:
     global intermediate_result
     if result is None:
         result = []
@@ -123,6 +123,7 @@ def walk(pt: dict, result: list[bytes] | None = None, rules: list[str] | None = 
     if depth == 0:
         result.append(text.encode("latin1"))
         return list(zip([""] + rules, result))
+    return None
 
 if __name__ == "__main__":
     if len(sys.argv) != 2:
@@ -134,4 +135,6 @@ if __name__ == "__main__":
         j: dict = json.load(f)
     pt: dict = j["parse_tree"]
 
-    main(sys.argv[1], walk(pt))
+    walk_result: list[tuple[str, bytes]] | None= walk(pt)
+    assert walk_result is not None
+    main(sys.argv[1], walk_result)
