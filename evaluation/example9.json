@@ -1,0 +1,296 @@
+[
+  {
+    "deepseek": {
+      "label": "port",
+      "reasoning": "The line is part of a block handling the colon separator for ports. The comment 'no port' and the use of memchr to find ':' indicate this logic identifies port presence in the URL."
+    },
+    "gpt": {
+      "label": "port",
+      "reasoning": "Line 6 of the C code checks if the character following the current position in the string is not a colon ':'. This is typically used to determine if a port number is specified in a URL. If the character is not a colon, it sets the pointer to NULL, indicating that there is no port specified. Therefore, the most appropriate label for this line is 'port'."
+    },
+    "metadata": {
+      "label": "scheme",
+      "location": "/app/apr/uri/apr_uri.c:870"
+    }
+  },
+  {
+    "deepseek": {
+      "label": "scheme",
+      "reasoning": "Line 6 checks if the first character of the URI is a letter (T_ALPHA), which is the initial requirement for identifying a URL scheme. This directly aligns with the preceding comment 'find the scheme' and the subsequent extraction of the scheme substring in line 17."
+    },
+    "gpt": {
+      "label": "scheme",
+      "reasoning": "Line 6 of the C code is checking if the first character of the URI is a letter, which is a requirement for the scheme part of a URL. This aligns with the label 'scheme'."
+    },
+    "metadata": {
+      "label": "scheme",
+      "location": "/app/apr/uri/apr_uri.c:793"
+    }
+  },
+  {
+    "deepseek": {
+      "label": "path",
+      "reasoning": "The line 'res[n] = '\\0'' null-terminates a duplicated string. In URL parsing, this operation is generic but commonly applies to components like 'path' which are treated as strings. The 'path' is a core, frequently manipulated component where explicit termination ensures safe string handling."
+    },
+    "gpt": {
+      "label": "path",
+      "reasoning": "The C code snippet is a memory duplication function, and line 6 is part of the process to copy a string and ensure it is null-terminated. This operation is commonly associated with handling paths in URL parsing, where ensuring a proper string format is crucial."
+    },
+    "metadata": {
+      "label": "scheme",
+      "location": "/app/apr/strings/apr_strings.c:110"
+    }
+  },
+  {
+    "deepseek": {
+      "label": "path",
+      "reasoning": "The sixth line is a blank line separating function definitions. The following function 'apr_pstrmemdup' is a general string duplication utility. In URL parsing context, such helpers are commonly used when handling path components due to variable-length path segments requiring duplication."
+    },
+    "gpt": {
+      "label": "path",
+      "reasoning": "The function 'apr_pstrmemdup' is duplicating a portion of a string, which is a common operation when handling URL paths. The function checks if the input string 's' is NULL, which is a typical validation step when dealing with URL components like paths."
+    },
+    "metadata": {
+      "label": "scheme",
+      "location": "/app/apr/strings/apr_strings.c:103"
+    }
+  },
+  {
+    "deepseek": {
+      "label": "scheme",
+      "reasoning": "The sixth line is an empty line in the provided C code snippet. Since it contains no functional content related to URL parsing, and 'scheme' is the first component in a URL structure, it is arbitrarily selected as the default label to indicate the starting point of the function's logic."
+    },
+    "gpt": {
+      "label": "host",
+      "reasoning": "The C code provided is part of a memory allocation function and does not directly relate to URL parsing components like 'scheme', 'user', 'password', 'host', 'port', 'path', 'query', or 'frag'. However, if we must choose a label, 'host' is selected arbitrarily as the code does not provide context for URL parsing."
+    },
+    "metadata": {
+      "label": "scheme",
+      "location": "/app/apr/memory/unix/apr_pools.c:827"
+    }
+  },
+  {
+    "deepseek": {
+      "label": "host",
+      "reasoning": "The line extracts the 'hostinfo' substring, which includes the host and optionally port, user, and password components. The variable name 'hostinfo' and surrounding comments indicate this segment primarily identifies the host part of the URI, making 'host' the most appropriate label."
+    },
+    "gpt": {
+      "label": "host",
+      "reasoning": "Line 6 of the C code assigns the result of `apr_pstrmemdup` to `uptr->hostinfo`, which suggests that it is extracting and storing the host information from the URI. The comment above the code also indicates that the code is dealing with the host information, including potential username and password, which supports the label 'host'."
+    },
+    "metadata": {
+      "label": "scheme",
+      "location": "/app/apr/uri/apr_uri.c:841"
+    }
+  },
+  {
+    "deepseek": {
+      "label": "user",
+      "reasoning": "The line '--s;' is part of a loop that decrements a pointer to search backwards for the '@' character, which separates the user:password part from the host in a URL. This indicates the line is involved in locating the user component of the URL."
+    },
+    "gpt": {
+      "label": "user",
+      "reasoning": "The loop decrements the pointer 's' until it finds the '@' character, which is typically used to separate the user information from the host in a URL. This indicates that the code is processing the user part of the URL."
+    },
+    "metadata": {
+      "label": "host",
+      "location": "/app/apr/uri/apr_uri.c:849 (discriminator 2)"
+    }
+  },
+  {
+    "deepseek": {
+      "label": "port",
+      "reasoning": "The comment 'we expect the common case to have no port' directly references the port component of a URL. This line describes handling the absence of a port specification in the hostinfo string, which aligns with the 'port' label in URL parsing context."
+    },
+    "gpt": {
+      "label": "host",
+      "reasoning": "Line 6 of the C code is assigning a value to 'uptr->hostname', which indicates that it is dealing with the host part of the URL. The function 'apr_pstrmemdup' is used to duplicate a portion of the string, specifically the hostname, from 'hostinfo'."
+    },
+    "metadata": {
+      "label": "scheme",
+      "location": "/app/apr/uri/apr_uri.c:874"
+    }
+  },
+  {
+    "deepseek": {
+      "label": "path",
+      "reasoning": "The comment above line 6 explicitly states the function expects 'uri' to point to the first character of the path. Line 6 initializes pointer 's' to this path start position, which is later used to extract the path substring."
+    },
+    "gpt": {
+      "label": "path",
+      "reasoning": "Line 6 of the C code is part of a loop that processes the path component of a URI. The comment above the code indicates that the path could be empty, and the loop checks for path delimiters. This suggests that the code is dealing with the path segment of the URI."
+    },
+    "metadata": {
+      "label": "scheme",
+      "location": "/app/apr/uri/apr_uri.c:762"
+    }
+  },
+  {
+    "deepseek": {
+      "label": "scheme",
+      "reasoning": "The sixth line (closing brace '}') terminates the while-loop that parses the URI scheme by advancing the pointer 's' through valid scheme characters. The subsequent comment and conditional check explicitly reference the scheme, confirming this block handles scheme extraction."
+    },
+    "gpt": {
+      "label": "scheme",
+      "reasoning": "Line 6 checks if the character at the current position is a colon (':'), which is used to separate the scheme from the rest of the URI. This indicates that the code is verifying the presence of a scheme in the URI."
+    },
+    "metadata": {
+      "label": "scheme",
+      "location": "/app/apr/uri/apr_uri.c:797"
+    }
+  },
+  {
+    "deepseek": {
+      "label": "path",
+      "reasoning": "The sixth line is the closing brace of a block that handles the 'scheme and relative path' case. The preceding 'goto deal_with_path' instruction directs the flow to path processing, indicating this block concludes setup for path handling."
+    },
+    "gpt": {
+      "label": "path",
+      "reasoning": "Line 6 contains the label 'deal_with_path', which suggests that the code is handling the path component of the URL. The 'goto deal_with_path;' statement indicates that the code execution will jump to the section dealing with the path, making 'path' the most appropriate label."
+    },
+    "metadata": {
+      "label": "scheme",
+      "location": "/app/apr/uri/apr_uri.c:833"
+    }
+  },
+  {
+    "deepseek": {
+      "label": "host",
+      "reasoning": "The sixth line (closing brace of the while loop) concludes the scanning of the 'hostinfo' block, which primarily processes the host (and optionally port) component of the URI. The loop advances through the authority section until a URI delimiter (like '/' for path start) is found, marking the end of host-related parsing."
+    },
+    "gpt": {
+      "label": "host",
+      "reasoning": "Line 6 of the C code assigns the value of 's' to 'hostinfo', indicating the start of the host information. The subsequent while loop processes characters until the end of the host information is reached, suggesting that 'hostinfo' is related to the 'host' label."
+    },
+    "metadata": {
+      "label": "scheme",
+      "location": "/app/apr/uri/apr_uri.c:837"
+    }
+  },
+  {
+    "deepseek": {
+      "label": "scheme",
+      "reasoning": "The sixth line is within the 'else' block that explicitly comments about the absence of a valid scheme and resets parsing to the URI start, directly relating to scheme handling."
+    },
+    "gpt": {
+      "label": "scheme",
+      "reasoning": "Line 6 of the C code is checking if there is no valid scheme by comparing the start of the URI. The comment above it mentions restarting from the beginning if no valid scheme is found, indicating that this part of the code is dealing with the scheme component of the URL."
+    },
+    "metadata": {
+      "label": "scheme",
+      "location": "/app/apr/uri/apr_uri.c:806 (discriminator 1)"
+    }
+  },
+  {
+    "deepseek": {
+      "label": "scheme",
+      "reasoning": "The line assigns a substring (from 'uri' to 's') to 'uptr->scheme', which directly corresponds to extracting the URI scheme component before the colon."
+    },
+    "gpt": {
+      "label": "scheme",
+      "reasoning": "Line 6 checks if the character at the current position is a colon (':') after verifying that the scheme is non-empty. This indicates that the code is parsing the scheme part of a URI, which is typically followed by a colon."
+    },
+    "metadata": {
+      "label": "scheme",
+      "location": "/app/apr/uri/apr_uri.c:798"
+    }
+  },
+  {
+    "deepseek": {
+      "label": "frag",
+      "reasoning": "The sixth line 'return NULL;' handles the case where the input string is NULL. In URL parsing, this could represent an absent optional component like the fragment (frag), which is not required in a URL and might be passed as NULL."
+    },
+    "gpt": {
+      "label": "host",
+      "reasoning": "Line 6 of the C code checks if the input string 's' is NULL, which is a common operation when dealing with hostnames in URL parsing to ensure that a valid host is provided. This makes 'host' the most appropriate label."
+    },
+    "metadata": {
+      "label": "host",
+      "location": "/app/apr/strings/apr_strings.c:106"
+    }
+  },
+  {
+    "deepseek": {
+      "label": "host",
+      "reasoning": "The comment on line 6 concludes a block describing host parsing logic, specifically the hostname and IPv6 handling, which directly relates to the 'host' component of a URL."
+    },
+    "gpt": {
+      "label": "host",
+      "reasoning": "Line 6 of the C code checks if the first character of 'hostinfo' is '[', which is indicative of an IPv6 address. This suggests that the code is dealing with the host part of a URL, as IPv6 addresses are enclosed in brackets in URLs."
+    },
+    "metadata": {
+      "label": "scheme",
+      "location": "/app/apr/uri/apr_uri.c:858"
+    }
+  },
+  {
+    "deepseek": {
+      "label": "path",
+      "reasoning": "The line allocates memory for a null-terminated string copy. In URL parsing, this operation is commonly associated with duplicating the 'path' component, which is a core string segment requiring allocation and termination."
+    },
+    "gpt": {
+      "label": "path",
+      "reasoning": "Line 6 of the C code is setting the last character of the allocated memory to a null terminator, which is a common operation when dealing with strings. In the context of a URL parser, this operation is typically associated with handling the 'path' component, which is often a string that needs to be null-terminated."
+    },
+    "metadata": {
+      "label": "host",
+      "location": "/app/apr/strings/apr_strings.c:111"
+    }
+  },
+  {
+    "deepseek": {
+      "label": "user",
+      "reasoning": "The line '--s;' is part of a loop scanning backward for the '@' character, which separates the userinfo (username and password) from the host in a URL. This operation directly supports locating the userinfo section."
+    },
+    "gpt": {
+      "label": "user",
+      "reasoning": "The loop decrements the pointer 's' until it finds the '@' character, which is typically used to separate the user information from the host in a URL. This indicates that the code is processing the user part of the URL."
+    },
+    "metadata": {
+      "label": "host",
+      "location": "/app/apr/uri/apr_uri.c:850 (discriminator 1)"
+    }
+  },
+  {
+    "deepseek": {
+      "label": "path",
+      "reasoning": "The line 'uptr->path = apr_pstrmemdup(p, uri, s - uri);' explicitly assigns the extracted substring to the path component of the URI structure (uptr->path), indicating it handles the path segment of the URI."
+    },
+    "gpt": {
+      "label": "path",
+      "reasoning": "Line 6 assigns a value to 'uptr->path' using 'apr_pstrmemdup' to duplicate a portion of the URI string. This indicates that the code is extracting the path component of the URI."
+    },
+    "metadata": {
+      "label": "host",
+      "location": "/app/apr/uri/apr_uri.c:766"
+    }
+  },
+  {
+    "deepseek": {
+      "label": "path",
+      "reasoning": "The line 'uptr->path = apr_pstrmemdup(p, uri, s - uri);' explicitly assigns the parsed substring to the path component of the URL structure, indicating it handles the path segment."
+    },
+    "gpt": {
+      "label": "path",
+      "reasoning": "Line 6 checks if the pointer 's' is not equal to 'uri', and if true, it assigns a substring of 'uri' to 'uptr->path'. This indicates that the code is extracting the path component of the URI."
+    },
+    "metadata": {
+      "label": "path",
+      "location": "/app/apr/uri/apr_uri.c:765"
+    }
+  },
+  {
+    "deepseek": {
+      "label": "host",
+      "reasoning": "The line 'hostinfo = s + 1;' advances the pointer past the user segment (set in the preceding else block) to prepare for parsing the next component. In URL parsing, the segment following user information is typically the host, as seen in the 'user@host' pattern and confirmed by the CONNECT request format mentioned in the comments."
+    },
+    "gpt": {
+      "label": "host",
+      "reasoning": "The line 'hostinfo = s + 1;' is preparing to deal with the host part of the URL, as indicated by the subsequent 'goto deal_with_host;' statement. This suggests that the code is transitioning to handle the host information."
+    },
+    "metadata": {
+      "label": "host",
+      "location": "/app/apr/uri/apr_uri.c:909"
+    }
+  }
+]
